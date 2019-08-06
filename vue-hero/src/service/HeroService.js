@@ -18,17 +18,15 @@ export default {
     return this.heroes
   },
   getHero (id) {
-    this.log(`fetched hero id=${id}`)
     for (var hero of this.heroes) {
       if (hero.id === id) {
+        this.log(`fetched hero id=${id}`)
         return hero
       }
     }
   },
   searchHeroes (heroName) {
-    this.log(`searched heroes matching "${heroName}"`)
     var heroes1 = []
-
     if (heroName.length === 0) {
       return heroes1
     }
@@ -37,6 +35,10 @@ export default {
       if (hero.name.toLowerCase().indexOf(heroName) >= 0) {
         heroes1.push(hero)
       }
+    }
+
+    if (heroes1.length > 0) {
+      this.log(`found heroes matching "${heroName}"`)
     }
 
     return heroes1
@@ -50,13 +52,11 @@ export default {
     }
     hero.id = max + 1
 
-    this.log(`added hero id=${hero.id}`)
     this.heroes.push(hero)
+    this.log(`added hero id=${hero.id}`)
   },
   deleteHero (hero) {
-    this.log(`deleted hero id=${hero.id}`)
     var index = 0
-
     for (var hero1 of this.heroes) {
       if (hero.id === hero1.id) {
         break
@@ -65,12 +65,13 @@ export default {
     }
 
     this.heroes.splice(index, 1)
+    this.log(`deleted hero id=${hero.id}`)
   },
   updateHero (hero) {
-    this.log(`updated hero id=${hero.id}`)
     for (var hero1 of this.heroes) {
       if (hero.id === hero1.id) {
         hero1.name = hero.name
+        this.log(`updated hero id=${hero.id}`)
         break
       }
     }
